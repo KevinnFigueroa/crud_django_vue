@@ -8,14 +8,14 @@ from django.forms.models import model_to_dict
 
 def index(request):
     """
-    .Retorna página principal.
+     .Retorna página principal.
     """
     return render(request, "index.html")
 
 
 def read(request):
     """
-    .Retorna todos los usuarios registrados en la base de datos.
+     .Retorna todos los usuarios registrados en la base de datos.
     """
     usuario = list(usuarios.objects.values())
     return JsonResponse({"tasks": usuario}, status=200)
