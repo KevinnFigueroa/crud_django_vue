@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+   <link rel="stylesheet" href="/static/main.css">
+   <title>Crud Vue.js Kevin</title>
+</head>
+
+<body>
+   <div class="container-fluid">
+      <div class="col-4 mx-auto mt-5">
+         {% verbatim %}
+         <div id="app">
+            <form>
+               <div class="form-group row">
+                  <div v-show="cartel_insertar" class="alert alert-success alert-dismissible">
+                     <a @click="cartel_insertar= ''" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                     <strong>Peticion completada!</strong> sus datos fueron insertados.
+                  </div>
+                  <div v-show="cartel_update" class="alert alert-info alert-dismissible">
+                     <a @click="cartel_update= ''" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                     <strong>Peticion completada!</strong> sus datos fueron modificados.
+                  </div>
+                  <div v-show="cartel_delete" class="alert alert-danger alert-dismissible">
+                     <a @click="cartel_delete= ''" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                     <strong>Peticion completada!</strong> sus datos fueron eliminados.
+                  </div>
+                  <div class="card mt-22">
+                     <div class="card-body">
+                        <input class="form-control m-inp" v-model="form.nombre" placeholder="Nombre" required>
+                        <input class="form-control m-inp" v-model="form.apellido" placeholder="Apellido" required>
+                        <input class="form-control m-inp" v-model="form.email" placeholder="Email" required>
+                        <input class="form-control m-last-inp" v-model="form.telefono" placeholder="Teléfono" required>
+                        <div class="row">
+                           <div class="col-lg-6">
+                              <input type="button" value="Crear" v-on:click="sendPost"
+                                 class="btn btn-block btn-success mt-auto">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <div class="card mt-22" v-for="task in tasks">
+                     <div class="card-body">
+                        <input class="form-control m-inp" v-model="task.nombre" placeholder="nombre">
+                        <input class="form-control m-inp" v-model="task.apellido" placeholder="apellido">
+                        <input class="form-control m-inp" v-model="task.email" placeholder="email">
+                        <input class="form-control m-last-inp" v-model="task.telefono" placeholder="telefono">
+                        <div class="row">
+                           <div class="col-lg-6">
+                              <input type="button" value="Actualizar" v-on:click="sendUpdate(task.id)"
+                                 class="btn btn-block btn-info mt-auto">
+                           </div>
+                           <div class="col-lg-6">
+                              <input type="button" value="Eliminar" v-on:click="sendDelete(task.id)"
+                                 class="btn btn-block btn-danger mt-auto">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+   {% endverbatim %}
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+   <script src="/static/vue.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</body>
+
+</html>
